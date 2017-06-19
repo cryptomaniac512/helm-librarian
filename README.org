@@ -1,0 +1,5 @@
+* Helm Librarian
+The project provide a simple Helm UI for searching (grep/find) in library sources.
+
+* State
+Project is under development now. So, now it support only working with python virtualenv sources.
