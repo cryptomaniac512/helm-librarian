@@ -98,7 +98,10 @@
 (defun librarian-source-find-files ()
   "Find files in library sources.."
   (cl-loop with root = venv-current-dir
-     for display in (find-lisp-find-files root "")
+     for display in (cl-remove-if
+                     (lambda (file)
+                       (or (file-directory-p file) (string-match "\\.py[co]$" file)))
+                     (find-lisp-find-files venv-current-dir ""))
      collect (cons display display)))
 
 (defun helm-librarian-source-find ()
