@@ -104,7 +104,7 @@
 (defun helm-librarian-source-find ()
   "Helm find files in library sources."
   (interactive)
-  (let ((venv-source-files (librarian-source-find-files)))
+  (let ((librarian-source-files (librarian-source-find-files)))
 
     (setq helm-librarian-source-files
           (helm-build-sync-source "Librarian files"
