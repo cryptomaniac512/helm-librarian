@@ -1,0 +1,7 @@
+* v 0.0.1
+  - Base functionality
+  - Support for grep in Python virtualenv
+    
+* v 0.0.2
+  - Error fixes
+  - Support for finding files in Python virtualenv

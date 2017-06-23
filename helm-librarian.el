@@ -5,7 +5,7 @@
 ;; Author: Nikita <CryptoManiac> Sivakov <cryptomaniac.512@gmail.com>
 ;; URL: https://gitlab.com/cryptomaniac/helm-librarian
 ;; Created: 2017-06-09
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Package-Requires: ((helm "1.7.7") (cl-lib "0.3"))
 
 
