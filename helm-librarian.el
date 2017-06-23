@@ -5,7 +5,7 @@
 ;; Author: Nikita <CryptoManiac> Sivakov <cryptomaniac.512@gmail.com>
 ;; URL: https://gitlab.com/cryptomaniac/helm-librarian
 ;; Created: 2017-06-09
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Package-Requires: ((helm "1.7.7") (cl-lib "0.3"))
 
 
@@ -24,14 +24,12 @@
 ;; GNU General Public License for more details.
 ;;
 ;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs; see the file COPYING.  If not, write to the
-;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-;; Boston, MA 02110-1301, USA.
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 ;;
 ;; This library provides easy library search operations (grep/find).
-;;
+
 ;;; Code:
 
 (require 'cl-lib)
@@ -100,13 +98,16 @@
 (defun librarian-source-find-files ()
   "Find files in library sources.."
   (cl-loop with root = venv-current-dir
-     for display in (find-lisp-find-files root "")
+     for display in (cl-remove-if
+                     (lambda (file)
+                       (or (file-directory-p file) (string-match "\\.py[co]$" file)))
+                     (find-lisp-find-files venv-current-dir ""))
      collect (cons display display)))
 
 (defun helm-librarian-source-find ()
   "Helm find files in library sources."
   (interactive)
-  (let ((venv-source-files (librarian-source-find-files)))
+  (let ((librarian-source-files (librarian-source-find-files)))
 
     (setq helm-librarian-source-files
           (helm-build-sync-source "Librarian files"
